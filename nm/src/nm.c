@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/11 19:29:59 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:26:46 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 
-void	analyse_header(void *ptr, unsigned long file_size)
+void	analyse_header(void *ptr, uint32_t file_size)
 {
-	unsigned int	magic_number;
+	uint32_t	magic_number;
 
 	magic_number = *(unsigned int*)ptr;
 	if (magic_number == MH_MAGIC_64
-			&& file_size > sizeof(struct mach_header_64))
+			&& file_size > (uint32_t)sizeof(struct mach_header_64))
 		handle_64(ptr, 0, file_size);
-	else if (magic_number == MH_CIGAM_64)
+	else if (magic_number == MH_CIGAM_64
+			&& file_size > (uint32_t)sizeof(struct mach_header_64))
 		handle_64(ptr, 1, file_size);
 	else
 		file_format_error();

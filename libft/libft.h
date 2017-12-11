@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:22:43 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/05 21:39:47 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:53:14 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <stdint.h>
 # include <wchar.h>
 # include "printf.h"
 # include "get_next_line.h"
@@ -112,5 +113,8 @@ char				*ft_strjoin_free_both(char const *s1, char const *s2);
 void				ft_hexdump(void *memory, int len);
 void				print_addr(void *ptr);
 void				ft_putnbr_hexa(unsigned long int n);
+uint16_t			reverse_uint16(uint16_t val);
+uint32_t			reverse_uint32(uint32_t val);
+uint64_t			reverse_uint64(uint64_t val);
 
 #endif

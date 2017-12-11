@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:00:44 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/11 21:28:11 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/11 22:22:28 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void	handle_64(struct mach_header_64 *ptr, int endianness, size_t file_size)
 		i++;
 		lc = (void*)lc + lc->cmdsize;
 	}
-	ft_putstr("This is a macho 64 file !\n");
 }
