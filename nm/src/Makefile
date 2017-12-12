@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/23 17:07:31 by adubedat          #+#    #+#              #
-#    Updated: 2017/12/11 16:02:51 by adubedat         ###   ########.fr        #
+#    Updated: 2017/12/12 14:52:32 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_PATH = ../$(OBJ_FOLDER)
 DST_PATH = $(ROOT)
 LFT_PATH = $(ROOT)/libft
 
-CC = gcc -g
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
 LDFLAGS = -L$(LFT_PATH)
@@ -34,6 +34,9 @@ SRC_NAME = nm.c \
 		   error.c \
 		   error2.c \
 		   macho_64.c \
+		   sort.c \
+		   symbol.c \
+		   output.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

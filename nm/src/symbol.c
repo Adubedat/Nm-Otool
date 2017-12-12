@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   symbol.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 16:34:34 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/12 13:13:36 by adubedat         ###   ########.fr       */
+/*   Created: 2017/12/12 13:56:54 by adubedat          #+#    #+#             */
+/*   Updated: 2017/12/12 15:03:44 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "nm.h"
+#include <mach-o/nlist.h>
 
-void	ft_lstadd(t_list **alst, t_list *new)
+char	get_symbol(uint8_t type, uint8_t sect)
 {
-	if (alst && new)
-	{
-		if (*alst)
-		{
-			new->next = *alst;
-			*alst = new;
-		}
-		else
-		{
-			new->next = NULL;
-			*alst = new;
-		}
-	}
+	char c;
+
+	if (sect)
+		;
+	if ((type & N_ABS) == N_ABS)
+		c = 'A';
+	else if ((type & N_INDR) == N_INDR)
+		c = 'I';
+	else if ((type & N_SECT) == N_SECT)
+		c = 'T';
+	else
+		c = 'U';
+	return (c);
 }

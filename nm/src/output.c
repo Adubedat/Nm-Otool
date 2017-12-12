@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 16:34:34 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/12 13:13:36 by adubedat         ###   ########.fr       */
+/*   Created: 2017/12/12 14:09:00 by adubedat          #+#    #+#             */
+/*   Updated: 2017/12/12 14:57:47 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "nm.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	print_lst(t_sym_list *lst)
 {
-	if (alst && new)
+	while (lst != NULL)
 	{
-		if (*alst)
-		{
-			new->next = *alst;
-			*alst = new;
-		}
+		if (lst->symbol != 'U')
+			ft_printf("%016llx ", lst->value);
 		else
-		{
-			new->next = NULL;
-			*alst = new;
-		}
+			ft_putstr("                 ");
+		ft_putchar(lst->symbol);
+		ft_putchar(' ');
+		ft_putstr(lst->name);
+		ft_putchar('\n');
+		lst = lst->next;
 	}
 }
