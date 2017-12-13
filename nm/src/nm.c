@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/13 13:40:25 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:18:13 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int		main(int argc, char **argv)
 		i = 1;
 		while (argv[i])
 		{
+			if (argc > 2)
+				ft_printf("\n%s:\n", argv[i]);
 			nm(argv[i]);
 			i++;
 		}
