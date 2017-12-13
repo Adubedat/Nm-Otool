@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/12 18:40:43 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:31:50 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 
 typedef struct			s_data
 {
-	int					be;
+	uint8_t				be;
 	void				*ptr;
 	size_t				file_size;
+	uint8_t				sect_size;
+	void				*sect[256];
 }						t_data;
 
 typedef struct			s_sym_list

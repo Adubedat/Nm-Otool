@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 14:09:00 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/12 14:57:47 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:30:34 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	print_lst(t_sym_list *lst)
 {
+	t_sym_list	*temp;
+
 	while (lst != NULL)
 	{
 		if (lst->symbol != 'U')
@@ -24,6 +26,8 @@ void	print_lst(t_sym_list *lst)
 		ft_putchar(' ');
 		ft_putstr(lst->name);
 		ft_putchar('\n');
-		lst = lst->next;
+		temp = lst->next;
+		free(lst);
+		lst = temp;
 	}
 }

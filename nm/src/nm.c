@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/12 18:38:52 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:40:25 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	nm(char *file)
 	int			fd;
 	struct stat	buf;
 
+	data.sect_size = 0;
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (open_error(file));
 	if (fstat(fd, &buf) < 0)

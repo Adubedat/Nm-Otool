@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/23 17:07:31 by adubedat          #+#    #+#              #
-#    Updated: 2017/12/12 14:52:32 by adubedat         ###   ########.fr        #
+#    Updated: 2017/12/13 17:35:51 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_PATH = ../$(OBJ_FOLDER)
 DST_PATH = $(ROOT)
 LFT_PATH = $(ROOT)/libft
 
-CC = gcc
+CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
 LDFLAGS = -L$(LFT_PATH)
