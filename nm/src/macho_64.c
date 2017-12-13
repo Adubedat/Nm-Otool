@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:00:44 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/13 19:00:02 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:02:28 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		handle_nlist64(struct nlist_64 symtab, char *strtab, t_data data,
 	if ((size_t)((void*)strtab + strx - data.ptr) > data.file_size)
 		return (-1);
 	new->name = strtab + strx;
-	new->symbol = get_symbol(symtab.n_type, symtab.n_sect, data);
+	new->symbol = get_symbol(symtab.n_type, symtab.n_sect, value, data);
 	new->value = value;
 	lstadd_ascii_sorted(lst, new);
 	return (0);

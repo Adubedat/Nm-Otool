@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 13:56:54 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/13 18:50:00 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:03:21 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	parse_section(uint8_t type, uint8_t n_sect, t_data data)
 	return (c);
 }
 
-char	get_symbol(uint8_t type, uint8_t sect, t_data data)
+char	get_symbol(uint8_t type, uint8_t sect, uint64_t value, t_data data)
 {
 	char c;
 
@@ -44,6 +44,11 @@ char	get_symbol(uint8_t type, uint8_t sect, t_data data)
 	else if ((type & N_TYPE) == N_SECT)
 		c = parse_section(type, sect, data);
 	else
-		c = (type & N_EXT) ? 'U' : 'u';
+	{
+		if ((type & N_EXT) && value != 0)
+			c = 'C';
+		else
+			c = (type & N_EXT) ? 'U' : 'u';
+	}
 	return (c);
 }
