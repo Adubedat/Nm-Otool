@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 14:10:18 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/08 14:19:58 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:48:45 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,35 @@
 
 void	open_error(char *file)
 {
-	ft_putstr("Error : open failed for ");
-	ft_putstr(file);
-	ft_putchar('\n');
+	ft_putstr_fd("Error : open failed for ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	fstat_error(char *file)
 {
-	ft_putstr("Error : fstat failed for ");
-	ft_putstr(file);
-	ft_putchar('\n');
+	ft_putstr_fd("Error : fstat failed for ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	mmap_error(char *file)
 {
-	ft_putstr("Error : mmap failed for ");
-	ft_putstr(file);
-	ft_putchar('\n');
+	ft_putstr_fd("Error : mmap failed for ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	munmap_error(char *file)
 {
-	ft_putstr("Error : munmap failed for ");
-	ft_putstr(file);
-	ft_putchar('\n');
+	ft_putstr_fd("Error : munmap failed for ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	close_error(char *file)
 {
-	ft_putstr("Error : close failed for ");
-	ft_putstr(file);
-	ft_putchar('\n');
+	ft_putstr_fd("Error : close failed for ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putchar_fd('\n', 2);
 }

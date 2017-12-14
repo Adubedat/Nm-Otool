@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/13 19:18:13 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/14 18:15:29 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,24 @@ void	analyse_header(t_data data)
 	uint32_t	magic_number;
 
 	magic_number = *(unsigned int*)data.ptr;
-	if ((magic_number == MH_MAGIC_64 || magic_number == MH_CIGAM)
+	if ((magic_number == MH_MAGIC_64 || magic_number == MH_CIGAM_64)
 			&& data.file_size > (uint32_t)sizeof(struct mach_header_64))
 	{
 		data.be = (magic_number == MH_MAGIC_64) ? 0 : 1;
 		handle_lc64(data.ptr, data);
 	}
+	else if ((magic_number == MH_MAGIC || magic_number == MH_CIGAM)
+			&& data.file_size > (uint32_t)sizeof(struct mach_header))
+	{
+		data.be = (magic_number == MH_MAGIC) ? 0 : 1;
+		handle_lc32(data.ptr, data);
+	}
+	else if ((magic_number == FAT_MAGIC || magic_number == FAT_CIGAM
+			|| magic_number == FAT_MAGIC_64 || magic_number == FAT_CIGAM_64)
+			&& data.file_size > (uint32_t)sizeof(struct fat_header))
+		handle_fat(data.ptr, data)
 	else
-		file_format_error();
+		file_format_error(data.file_name);
 }
 
 void	nm(char *file)
@@ -35,6 +45,7 @@ void	nm(char *file)
 	int			fd;
 	struct stat	buf;
 
+	data.file_name = file;
 	data.sect_size = 0;
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (open_error(file));

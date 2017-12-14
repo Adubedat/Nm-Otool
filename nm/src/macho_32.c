@@ -6,24 +6,24 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:00:44 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/14 17:40:35 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:42:20 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm.h"
 #include <mach-o/nlist.h>
 
-int		handle_nlist64(struct nlist_64 symtab, char *strtab, t_data data,
+int		handle_nlist32(struct nlist symtab, char *strtab, t_data data,
 	   	t_sym_list **lst)
 {
 	uint32_t	strx;
-	uint64_t	value;
+	uint32_t	value;
 	t_sym_list	*new;
 
 	if (symtab.n_type & N_STAB)
 		return (0);
 	strx = (data.be) ? swap_uint32(symtab.n_un.n_strx) : symtab.n_un.n_strx;
-	value = (data.be) ? swap_uint64(symtab.n_value) : symtab.n_value;
+	value = (data.be) ? swap_uint32(symtab.n_value) : symtab.n_value;
 	new = (t_sym_list*)malloc(sizeof(t_sym_list));
 	if ((size_t)((void*)strtab + strx - data.ptr) > data.file_size)
 		return (-1);
@@ -34,11 +34,11 @@ int		handle_nlist64(struct nlist_64 symtab, char *strtab, t_data data,
 	return (0);
 }
 
-void	parse_symtab64(struct symtab_command *sc, t_data data)
+void	parse_symtab32(struct symtab_command *sc, t_data data)
 {
 	uint32_t		i;
 	uint32_t		nsyms;
-	struct nlist_64	*sym_tab;
+	struct nlist	*sym_tab;
 	char			*string_table;
 	t_sym_list		*lst;
 
@@ -53,25 +53,25 @@ void	parse_symtab64(struct symtab_command *sc, t_data data)
 	{
 		if ((size_t)((void*)&sym_tab[i + 1] - data.ptr) > data.file_size)
 			return (truncated_file(data.file_name));
-		if (handle_nlist64(sym_tab[i], string_table, data, &lst) == -1)
+		if (handle_nlist32(sym_tab[i], string_table, data, &lst) == -1)
 			return (truncated_file(data.file_name));
 		i++;
 	}
 	print_lst(lst);
 }
 
-int		parse_segment64(struct segment_command_64 *segc, t_data *data)
+int		parse_segment32(struct segment_command *segc, t_data *data)
 {
 	uint32_t			nsects;
-	uint64_t			fileoff;
-	uint64_t			filesize;
-	struct section_64	*sect64;
+	uint32_t			fileoff;
+	uint32_t			filesize;
+	struct section		*sect32;
 	uint32_t			i;
 
 	nsects = (data->be) ? swap_uint32(segc->nsects) : segc->nsects;
-	fileoff = (data->be) ? swap_uint64(segc->fileoff) : segc->fileoff;
-	filesize = (data->be) ? swap_uint64(segc->filesize) : segc->filesize;
-	sect64 = (void*)segc + sizeof(*segc);
+	fileoff = (data->be) ? swap_uint32(segc->fileoff) : segc->fileoff;
+	filesize = (data->be) ? swap_uint32(segc->filesize) : segc->filesize;
+	sect32 = (void*)segc + sizeof(*segc);
 	i = 0;
 	if (fileoff + filesize > data->file_size)
 		return (-1);
@@ -79,14 +79,14 @@ int		parse_segment64(struct segment_command_64 *segc, t_data *data)
 		return (0);
 	while (i < nsects)
 	{
-		data->sect[i + data->sect_size] = &sect64[i];
+		data->sect[i + data->sect_size] = &sect32[i];
 		i++;
 	}
 	data->sect_size += nsects;
 	return (0);
 }
 
-void	handle_lc64(struct mach_header_64 *ptr, t_data data)
+void	handle_lc32(struct mach_header *ptr, t_data data)
 {
 	uint32_t			i;
 	uint32_t			ncmds;
@@ -103,10 +103,10 @@ void	handle_lc64(struct mach_header_64 *ptr, t_data data)
 		cmdsize = (data.be) ? swap_uint32(lc->cmdsize) : lc->cmdsize;
 		if ((size_t)((void*)lc + cmdsize - (void*)ptr) > data.file_size)
 			return (truncated_file(data.file_name));
-		if (cmd == LC_SEGMENT_64 && (parse_segment64((void*)lc, &data) == -1))
+		if (cmd == LC_SEGMENT && (parse_segment32((void*)lc, &data) == -1))
 			return (truncated_file(data.file_name));
 		if (cmd == LC_SYMTAB) 
-			return (parse_symtab64((void*)lc, data));
+			return (parse_symtab32((void*)lc, data));
 		lc = (void*)lc + cmdsize;
 	}
 }

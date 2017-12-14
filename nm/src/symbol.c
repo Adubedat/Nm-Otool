@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 13:56:54 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/13 19:03:21 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:20:48 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	parse_section(uint8_t type, uint8_t n_sect, t_data data)
 	char	*sectname;
 
 	c = 'I';
-	sectname = ((struct section_64 *)data.sect[n_sect - 1])->sectname;
+	sectname = ((struct section *)data.sect[n_sect - 1])->sectname;
 	if (ft_strcmp(sectname, SECT_TEXT) == 0)
 		c = (type & N_EXT) ? 'T' : 't';
 	else if (ft_strcmp(sectname, SECT_DATA) == 0)

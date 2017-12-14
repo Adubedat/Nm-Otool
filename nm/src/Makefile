@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/23 17:07:31 by adubedat          #+#    #+#              #
-#    Updated: 2017/12/13 17:35:51 by adubedat         ###   ########.fr        #
+#    Updated: 2017/12/14 17:41:16 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME = nm.c \
 		   error.c \
 		   error2.c \
 		   macho_64.c \
+		   macho_32.c \
 		   sort.c \
 		   symbol.c \
 		   output.c \

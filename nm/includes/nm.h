@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/13 19:02:21 by adubedat         ###   ########.fr       */
+/*   Updated: 2017/12/14 17:42:37 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct			s_data
 {
+	char				*file_name;
 	uint8_t				be;
 	void				*ptr;
 	size_t				file_size;
@@ -38,8 +39,11 @@ void					fstat_error(char *file);
 void					mmap_error(char *file);
 void					munmap_error(char *file);
 void					close_error(char *file);
-void					file_format_error(void);
+void					file_format_error(char *file);
+void					truncated_file(char *file);
 void					handle_lc64(struct mach_header_64 *ptr,
+		t_data data);
+void					handle_lc32(struct mach_header *ptr,
 		t_data data);
 char					get_symbol(uint8_t type, uint8_t sect,
 		uint64_t value, t_data data);
