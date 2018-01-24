@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/14 18:15:29 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/01/23 10:58:36 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	analyse_header(t_data data)
 	else if ((magic_number == FAT_MAGIC || magic_number == FAT_CIGAM
 			|| magic_number == FAT_MAGIC_64 || magic_number == FAT_CIGAM_64)
 			&& data.file_size > (uint32_t)sizeof(struct fat_header))
-		handle_fat(data.ptr, data)
+	{
+		handle_fat(data.ptr, data);
+	}
 	else
 		file_format_error(data.file_name);
 }
