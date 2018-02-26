@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:00:44 by adubedat          #+#    #+#             */
-/*   Updated: 2017/12/14 17:42:20 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:39:17 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	parse_symtab32(struct symtab_command *sc, t_data data)
 			return (truncated_file(data.file_name));
 		i++;
 	}
-	print_lst(lst);
+	print_lst(lst, data);
 }
 
 int		parse_segment32(struct segment_command *segc, t_data *data)
@@ -95,6 +95,7 @@ void	handle_lc32(struct mach_header *ptr, t_data data)
 	struct load_command	*lc;
 
 	i = 0;
+	data.arch = 32;
 	ncmds = (data.be) ? swap_uint32(ptr->ncmds) : ptr->ncmds;
 	lc = (struct load_command*)(ptr + 1);
 	while (i++ < ncmds)

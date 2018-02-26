@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2018/01/23 17:56:38 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/26 13:59:59 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct			s_data
 	size_t				file_size;
 	uint8_t				sect_size;
 	void				*sect[256];
+	int					argc;
+	int					arch;
+	int					from_fat;
+	int					from_archive;
 }						t_data;
 
 typedef struct			s_sym_list
@@ -47,7 +51,7 @@ void					handle_lc32(struct mach_header *ptr, t_data data);
 void					handle_fat(struct fat_header *ptr, t_data data);
 char					get_symbol(uint8_t type, uint8_t sect,
 		uint64_t value, t_data data);
-void					print_lst(t_sym_list *lst);
+void					print_lst(t_sym_list *lst, t_data data);
 void					lstadd_ascii_sorted(t_sym_list **list,
 		t_sym_list *new);
 void					analyse_header(t_data data);
