@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/23 17:07:31 by adubedat          #+#    #+#              #
-#    Updated: 2018/01/23 10:53:58 by adubedat         ###   ########.fr        #
+#    Updated: 2018/02/27 16:05:50 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC_NAME = nm.c \
 		   sort.c \
 		   symbol.c \
 		   output.c \
-		   fat.c
+		   fat.c \
+		   ar.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

@@ -6,11 +6,29 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 14:09:00 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/26 14:01:10 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/26 18:19:50 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm.h"
+
+void		write_arch(cpu_type_t cpu_type, char* file_name, uint32_t narch)
+{
+	if (narch > 1)
+		ft_putchar('\n');
+	ft_putstr(file_name);
+	if (narch > 1)
+	{
+		if (cpu_type == CPU_TYPE_X86)
+			ft_putstr(" (for architecture i386):\n");
+		else if (cpu_type == CPU_TYPE_POWERPC)
+			ft_putstr(" (for architecture ppc):\n");
+		else if (cpu_type == CPU_TYPE_X86_64)
+			ft_putstr(" (for architecture x86_64):\n");
+	}
+	else
+		ft_putstr(":\n");
+}
 
 void	print_line32(t_sym_list *lst)
 {

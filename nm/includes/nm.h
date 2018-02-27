@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/26 13:59:59 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/27 16:06:14 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <mach-o/loader.h>
 # include <mach-o/fat.h>
+# include <ar.h>
 
 typedef struct			s_data
 {
@@ -49,11 +50,15 @@ void					truncated_file(char *file);
 void					handle_lc64(struct mach_header_64 *ptr, t_data data);
 void					handle_lc32(struct mach_header *ptr, t_data data);
 void					handle_fat(struct fat_header *ptr, t_data data);
+void					handle_ar(struct ar_hdr *ptr, t_data data);
 char					get_symbol(uint8_t type, uint8_t sect,
 		uint64_t value, t_data data);
 void					print_lst(t_sym_list *lst, t_data data);
+void					write_arch(cpu_type_t cpu_type, char *file_name,
+		uint32_t march);
 void					lstadd_ascii_sorted(t_sym_list **list,
 		t_sym_list *new);
 void					analyse_header(t_data data);
+void					init_data(t_data *data);
 
 #endif

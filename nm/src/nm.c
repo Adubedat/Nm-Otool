@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/26 13:36:53 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/27 16:20:15 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ void	analyse_header(t_data data)
 	else if ((magic_number == FAT_MAGIC || magic_number == FAT_CIGAM
 			|| magic_number == FAT_MAGIC_64 || magic_number == FAT_CIGAM_64)
 			&& data.file_size > (uint32_t)sizeof(struct fat_header))
-	{
 		handle_fat(data.ptr, data);
-	}
+	else if (ft_strncmp((char*)data.ptr, ARMAG, SARMAG) == 0
+			&& data.file_size > SARMAG + (uint32_t)sizeof(struct ar_hdr))
+		handle_ar(data.ptr + SARMAG, data);
 	else
 		file_format_error(data.file_name);
 }
@@ -76,7 +77,6 @@ void	init_data(t_data *data)
 	data->sect_size = 0;
 	data->argc = 0;
 	data->arch = 0;
-	data->all_arch = 0;
 	data->from_fat = 0;
 	data->from_archive = 0;
 }
