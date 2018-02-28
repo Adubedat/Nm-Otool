@@ -6,13 +6,18 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 14:09:00 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/26 18:19:50 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 14:23:32 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nm.h"
 
-void		write_arch(cpu_type_t cpu_type, char* file_name, uint32_t narch)
+void		print_file_name_ar(char *archive_name, char *object_name)
+{
+	ft_printf("\n%s(%s):\n", archive_name, object_name);
+}
+
+void		write_arch(cpu_type_t cpu_type, char *file_name, uint32_t narch)
 {
 	if (narch > 1)
 		ft_putchar('\n');

@@ -6,11 +6,11 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 15:23:51 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 19:37:30 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:37:15 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm.h"
+#include "otool.h"
 
 void		analyse_object(struct ar_hdr *ptr, char *archive_name)
 {
@@ -31,6 +31,7 @@ void		handle_ar(struct ar_hdr *ptr, t_data data)
 {
 	size_t	size;
 
+	ft_printf("Archive : %s\n", data.file_name);
 	size = ft_atoi(ptr->ar_size);
 	if ((size_t)((void*)ptr + size + sizeof(*ptr) - data.ptr) > data.file_size)
 		return (truncated_file(data.file_name));

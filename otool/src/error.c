@@ -1,45 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/29 13:57:32 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 21:27:34 by adubedat         ###   ########.fr       */
+/*   Created: 2018/02/28 14:16:32 by adubedat          #+#    #+#             */
+/*   Updated: 2018/02/28 21:33:43 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "otool.h"
 
-int		ft_hexalen(unsigned long long int n)
+void	not_object_file(char *file_name)
 {
-	int	len;
-
-	len = 0;
-	if (n == 0 || n == -0)
-		return (1);
-	while (n != 0)
-	{
-		len++;
-		n = n / 16;
-	}
-	return (len);
+	ft_putstr(file_name);
+	ft_putstr(": is not an object file\n");
 }
 
-int		ft_intlen(int n)
+void	error_no_file(void)
 {
-	int	len;
-
-	len = 0;
-	if (n == 0 || n == -0)
-		return (1);
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		len++;
-		n = n / 10;
-	}
-	return (len);
+	ft_putstr_fd("Error: at least one file must be specified\n", 2);
 }

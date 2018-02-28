@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:22:43 by adubedat          #+#    #+#             */
-/*   Updated: 2018/01/23 14:56:11 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 21:27:09 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_lli_len(long long int n);
 int					ft_ulli_len(unsigned long long int n);
 int					ft_intlen(int n);
+int					ft_hexalen(unsigned long long int n);
 void				ft_swap(int *a, int *b);
 int					*ft_rrange(int start, int end);
 int					ft_power(int n, int power);
