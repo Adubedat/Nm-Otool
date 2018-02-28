@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 14:09:00 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 14:23:32 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:37:29 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		write_arch(cpu_type_t cpu_type, char *file_name, uint32_t narch)
 		ft_putstr(":\n");
 }
 
-void	print_line32(t_sym_list *lst)
+void		print_line32(t_sym_list *lst)
 {
 	if (lst->symbol != 'U')
 		ft_printf("%08llx ", lst->value);
@@ -47,7 +47,7 @@ void	print_line32(t_sym_list *lst)
 	ft_putchar('\n');
 }
 
-void	print_line64(t_sym_list *lst)
+void		print_line64(t_sym_list *lst)
 {
 	if (lst->symbol != 'U')
 		ft_printf("%016llx ", lst->value);
@@ -59,7 +59,7 @@ void	print_line64(t_sym_list *lst)
 	ft_putchar('\n');
 }
 
-void	print_lst(t_sym_list *lst, t_data data)
+void		print_lst(t_sym_list *lst, t_data data)
 {
 	t_sym_list	*temp;
 

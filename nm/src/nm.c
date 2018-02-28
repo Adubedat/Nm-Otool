@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/27 16:20:15 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:37:50 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	init_data(t_data *data)
 
 int		main(int argc, char **argv)
 {
-	int	i;
+	int		i;
 	t_data	data;
 
 	init_data(&data);

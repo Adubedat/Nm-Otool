@@ -6,12 +6,12 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 22:25:49 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:38:38 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NM_H
-# define NM_H
+#ifndef OTOOL_H
+# define OTOOL_H
 
 # include "libft.h"
 # include <mach-o/loader.h>
@@ -59,8 +59,10 @@ char					get_symbol(uint8_t type, uint8_t sect,
 void					print_lst(t_sym_list *lst, t_data data);
 void					print_section64(struct section_64 sect, t_data *data);
 void					print_section32(struct section sect, t_data *data);
-void					print_file_name_ar(char *archive_name, char *object_name);
-void					hexdump(void *memory, int len, uint64_t addr, t_data *data);
+void					print_file_name_ar(char *archive_name,
+		char *object_name);
+void					hexdump(void *memory, int len, uint64_t addr,
+		t_data *data);
 void					write_arch(cpu_type_t cpu_type, uint32_t march);
 void					lstadd_ascii_sorted(t_sym_list **list,
 		t_sym_list *new);

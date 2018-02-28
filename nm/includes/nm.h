@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 14:22:34 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:35:47 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ char					get_symbol(uint8_t type, uint8_t sect,
 void					print_lst(t_sym_list *lst, t_data data);
 void					write_arch(cpu_type_t cpu_type, char *file_name,
 		uint32_t march);
-void					print_file_name_ar(char *archive_name, char *object_name);
+void					print_file_name_ar(char *archive_name,
+		char *object_name);
 void					lstadd_ascii_sorted(t_sym_list **list,
 		t_sym_list *new);
 void					analyse_header(t_data data);

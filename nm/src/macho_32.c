@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 16:00:44 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/26 13:39:17 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:37:03 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <mach-o/nlist.h>
 
 int		handle_nlist32(struct nlist symtab, char *strtab, t_data data,
-	   	t_sym_list **lst)
+		t_sym_list **lst)
 {
 	uint32_t	strx;
 	uint32_t	value;
@@ -106,7 +106,7 @@ void	handle_lc32(struct mach_header *ptr, t_data data)
 			return (truncated_file(data.file_name));
 		if (cmd == LC_SEGMENT && (parse_segment32((void*)lc, &data) == -1))
 			return (truncated_file(data.file_name));
-		if (cmd == LC_SYMTAB) 
+		if (cmd == LC_SYMTAB)
 			return (parse_symtab32((void*)lc, data));
 		lc = (void*)lc + cmdsize;
 	}

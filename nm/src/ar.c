@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 15:23:51 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 19:37:30 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:36:09 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void		handle_ar(struct ar_hdr *ptr, t_data data)
 	while ((size_t)((void*)ptr - data.ptr) < data.file_size)
 	{
 		size = ft_atoi(ptr->ar_size);
-		if ((size_t)((void*)ptr + sizeof(*ptr) + size - data.ptr) > data.file_size)
+		if ((size_t)((void*)ptr + sizeof(*ptr) + size - data.ptr)
+				> data.file_size)
 			return (truncated_file(data.file_name));
 		analyse_object(ptr, data.file_name);
 		ptr = (void*)ptr + sizeof(*ptr) + size;
