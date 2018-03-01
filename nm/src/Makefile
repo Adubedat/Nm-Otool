@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/23 17:07:31 by adubedat          #+#    #+#              #
-#    Updated: 2018/02/27 16:05:50 by adubedat         ###   ########.fr        #
+#    Updated: 2018/03/01 15:57:56 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,10 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 DST = $(addprefix $(DST_PATH)/,$(NAME))
 
-all: $(DST)
+all: $(ROOT)/libft.a $(DST)
+
+$(ROOT)/libft.a:
+	@make -C $(ROOT) libft.a
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	mkdir -p $(OBJ_PATH)

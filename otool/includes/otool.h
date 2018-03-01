@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:33:14 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 22:38:38 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:04:09 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ typedef struct			s_sym_list
 	struct s_sym_list	*next;
 }						t_sym_list;
 
-void					open_error(char *file);
-void					fstat_error(char *file);
-void					mmap_error(char *file);
-void					munmap_error(char *file);
-void					close_error(char *file);
+int						open_error(char *file);
+int						fstat_error(char *file);
+int						mmap_error(char *file);
+int						munmap_error(char *file);
+int						close_error(char *file);
 void					file_format_error(char *file);
 void					truncated_file(char *file);
 void					error_no_file(void);

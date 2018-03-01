@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 13:20:15 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 22:40:15 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:06:29 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	analyse_header(t_data data)
 		not_object_file(data.file_name);
 }
 
-void	otool(t_data data)
+int		otool(t_data data)
 {
 	int			fd;
 	struct stat	buf;
@@ -50,22 +50,17 @@ void	otool(t_data data)
 	if ((fd = open(data.file_name, O_RDONLY)) < 0)
 		return (open_error(data.file_name));
 	if (fstat(fd, &buf) < 0)
-	{
-		fstat_error(data.file_name);
-		return ;
-	}
+		return (fstat_error(data.file_name));
 	data.file_size = buf.st_size;
 	if ((data.ptr = mmap(0, data.file_size, PROT_READ, MAP_PRIVATE, fd, 0))
 			== MAP_FAILED)
-	{
-		mmap_error(data.file_name);
-		return ;
-	}
+		return (mmap_error(data.file_name));
 	analyse_header(data);
 	if (munmap(data.ptr, data.file_size) < 0)
-		munmap_error(data.file_name);
+		return (munmap_error(data.file_name));
 	if (close(fd) < 0)
-		close_error(data.file_name);
+		return (close_error(data.file_name));
+	return (0);
 }
 
 void	init_data(t_data *data)
@@ -100,7 +95,8 @@ int		main(int argc, char **argv)
 		while (argv[i])
 		{
 			data.file_name = argv[i];
-			otool(data);
+			if (otool(data) == -1)
+				return (EXIT_FAILURE);
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/23 17:07:31 by adubedat          #+#    #+#              #
-#    Updated: 2018/02/28 22:09:22 by adubedat         ###   ########.fr        #
+#    Updated: 2018/03/01 16:05:23 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,14 @@ CPPFLAGS = $(addprefix -I ,$(INC_PATH))
 LDFLAGS = -L$(LFT_PATH)
 LDLIBS = -lft
 
-SRC_NAME = ../../nm/src/error.c \
-		   ../../nm/src/error2.c \
+SRC_NAME = ../../nm/src/error2.c \
 		   ../../nm/src/sort.c \
 		   ../../nm/src/symbol.c \
 		   fat.c \
 		   ar.c \
 		   otool.c \
 		   error.c \
+		   error2.c \
 		   output.c \
 		   macho_64.c \
 		   macho_32.c \
@@ -51,7 +51,10 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 DST = $(addprefix $(DST_PATH)/,$(NAME))
 
-all: $(DST)
+all: $(ROOT)/libft.a $(DST)
+
+$(ROOT)/libft.a:
+	@make -C $(ROOT) libft.a
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	mkdir -p $(OBJ_PATH)

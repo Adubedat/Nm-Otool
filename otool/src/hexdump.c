@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:58:15 by adubedat          #+#    #+#             */
-/*   Updated: 2018/02/28 22:14:57 by adubedat         ###   ########.fr       */
+/*   Updated: 2018/03/01 16:20:56 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	print_byte_otool(unsigned char byte)
 	b = "0123456789abcdef";
 	ft_putchar(b[byte / 16]);
 	ft_putchar(b[byte % 16]);
-	ft_putchar(' ');
 }
 
 void	print_zero(uint64_t addr, t_data *data)
@@ -78,6 +77,8 @@ void	hexdump(void *memory, int len, uint64_t addr, t_data *data)
 			ft_putchar('\t');
 		}
 		print_byte_otool(byte[i++]);
+		if (data->write_arch != CPU_TYPE_POWERPC || i % 4 == 0)
+			ft_putchar(' ');
 	}
 	ft_putchar('\n');
 }
